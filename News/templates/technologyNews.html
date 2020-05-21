@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{%block title%} Technology News {%endblock%}
+
+{%block content%}
+<br><br><br><br>
+
+<p class="lead display-4 text-center">Technology News</p>
+<br>
+
+<div class="container">
+    <div class="row">
+        {% for x in api.articles%}
+
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            <div class="card py-2 mb-4">
+                <div class="card-body">
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top img-fluid" height="180"  src="{{x.urlToImage}}"
+                            alt="Card image cap">
+                            <div class="card-body">
+
+                                <!--Title-->
+                                <h4 class="card-title">{{x.title|truncatechars:50}}</h4>
+                                <!--Text-->
+                                <p class="card-text">{{x.description|truncatechars:50}}</p>
+                                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                                <a class="btn btn-light-blue btn-sm" target="_blank" href="{{x.url}}">Read More</a>                          
+                              </div>
+                    </div>
+                    <div class="card-footer text-dark mb-0">
+                        <small>Author -{{x.author}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+</div>
+
+{% endblock %}
